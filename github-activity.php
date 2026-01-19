@@ -1,10 +1,33 @@
 #!/usr/bin/env php
 <?php
 
+// 1. Check for Help Flag
+// We check if the first argument exists and matches "--help" or "-h"
+if (isset($argv[1]) && ($argv[1] === '--help' || $argv[1] === '-h')) {
+    echo "\n";
+    echo "GitHub User Activity CLI\n";
+    echo "------------------------\n";
+    echo "A simple CLI tool to fetch recent GitHub activity.\n";
+    echo "\n";
+    echo "Usage:\n";
+    echo "  github-activity <username>\n";
+    echo "\n";
+    echo "Arguments:\n";
+    echo "  username    The GitHub username to fetch activity for.\n";
+    echo "\n";
+    echo "Options:\n";
+    echo "  --help, -h  Display this help message.\n";
+    echo "\n";
+    echo "Example:\n";
+    echo "  github-activity seddek-nadhem\n";
+    echo "\n";
+    exit(0); // Stop the script successfully
+}
+
 // Check if username argument is provided after github-activity
 if ($argc < 2) {
     echo "Please provide a GitHub username.\n";
-    echo "For example: github-activity kamranahmedse\n";
+    echo "For example: github-activity seddek-nadhem\n";
     exit(1);
 }
 
@@ -38,6 +61,12 @@ if ($response === false) {
 }
 
 $events = json_decode($response, true);
+
+// Check if the user exists but has no activity
+if (empty($events)) {
+    echo "User '$username' has no recent public activity.\n";
+    exit(0);
+}
 
 foreach($events as $event) {
     $type = $event['type'];
