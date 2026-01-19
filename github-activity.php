@@ -42,30 +42,32 @@ $events = json_decode($response, true);
 foreach($events as $event) {
     $type = $event['type'];
     $repoName = $event['repo']['name'];
+    $timestamp = strtotime($event['created_at']);
+    $formattedDate = date('j-n-Y', $timestamp) . " on " . date('l', $timestamp);
 
     switch ($type) {
         case 'PushEvent':
             $commits = $event['payload']['commits'] ?? [];
             $count = count($commits);
             if ($count > 0) {
-                echo "- Pushed $count commits to $repoName\n";
+                echo "- Pushed $count commits to $repoName ($formattedDate)\n";
             }
             break;
         
         case 'CreateEvent':
-            echo "- Created a new repository $repoName\n";
+            echo "- Created a new repository $repoName ($formattedDate)\n";
             break;
 
         case 'WatchEvent':
-            echo "- Starred $repoName\n";
+            echo "- Starred $repoName ($formattedDate)\n";
             break;
 
         case 'IssuesEvent':
-            echo "- Opened a new issue in $repoName\n";
+            echo "- Opened a new issue in $repoName ($formattedDate)\n";
             break;
 
         default:
-            echo "- $type in $repoName\n";
+            echo "- $type in $repoName ($formattedDate)\n";
             break;
     }
 }
