@@ -24,7 +24,7 @@ This project was built to practice core programming concepts including:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/Seddek-Nadhem/github-user-activity.git](https://github.com/Seddek-Nadhem/github-user-activity.git)
+   git clone https://github.com/Seddek-Nadhem/github-user-activity.git
    cd github-user-activity
 
 2. **Make it executable (Linux/macOS only): Skip this step if you are on Windows.**
