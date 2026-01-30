@@ -47,4 +47,8 @@ This project was built to practice core programming concepts including:
 ## 📂 Project Structure
 - `github-activity.php`: The main logic script (PHP).
 - `github-activity.bat`: Wrapper script for easy execution on Windows CMD.
-- Built for the roadmap.sh backend developer roadmap.
+
+
+## Inspiration
+
+- Project was done on instructions from the backend projects beginner page on roadmap.sh https://roadmap.sh/projects/github-user-activity
